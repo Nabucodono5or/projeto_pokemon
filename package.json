@@ -1,0 +1,39 @@
+{
+  "name": "projeto_pokemon",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "parcel index.html",
+    "clean": "rm -r dist/; rm -r .cache/",
+    "reset": "rm -R .karma-parcel",
+    "test": "karma start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Nabucodono5or/projeto_pokemon.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Nabucodono5or/projeto_pokemon/issues"
+  },
+  "homepage": "https://github.com/Nabucodono5or/projeto_pokemon#readme",
+  "dependencies": {
+    "angular": "^1.7.9",
+    "angular-mocks": "^1.7.9",
+    "angular-ui-router": "^1.0.25",
+    "babel-plugin-transform-html-import-to-string": "0.0.1"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "jasmine-core": "^3.5.0",
+    "karma": "^5.0.2",
+    "karma-chrome-launcher": "^3.1.0",
+    "karma-jasmine": "^3.1.1",
+    "karma-parcel": "^0.5.2",
+    "karma-spec-reporter": "0.0.32",
+    "parcel-bundler": "^1.12.4"
+  }
+}
