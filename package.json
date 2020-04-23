@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "parcel index.html",
     "clean": "rm -r dist/; rm -r .cache/",
-    "reset": "rm -R .karma-parcel",
+    "reset": "rm -r .karma-parcel; rm -r .cache/",
     "test": "karma start"
   },
   "repository": {
