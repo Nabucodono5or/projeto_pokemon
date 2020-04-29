@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/Nabucodono5or/projeto_pokemon#readme",
   "dependencies": {
+    "@uirouter/angularjs": "^1.0.26",
     "angular": "^1.7.9",
     "angular-mocks": "^1.7.9",
     "angular-ui-router": "^1.0.25",
