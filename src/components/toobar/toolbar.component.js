@@ -4,7 +4,7 @@ import template from "toolbar.html";
 let toolbarComponent = {
   template,
   controller,
-  controllerAS: "vm",
+  controllerAs: "vm",
 };
 
 export default toolbarComponent;
