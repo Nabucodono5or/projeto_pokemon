@@ -1,0 +1,55 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+nav{
+    height: 10vh;
+    background-color: cadetblue;
+    position: relative;
+}
+
+.nav-links li{
+    list-style: none;
+}
+
+.link {
+    text-decoration: none;
+    color: white;
+    font-size: 3em;
+}
+
+.nav-links {
+    background: cadetblue;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+    position: fixed;
+    height: 100vh;
+    width: 100%;
+    clip-path: circle(100px at 90% -10%);
+    -webkit-clip-path: circle(100px at 90% -10%);
+    transition: all 1s ease-out;
+}
+
+.nav-links.open {
+    clip-path: circle(2000px at 90% -10%);
+    -webkit-clip-path: circle(2000px at 90% -10%);
+}
+
+.humberguer {
+    position: absolute;
+    cursor: pointer;
+    right: 1em;
+    top: 1em;
+    z-index: 2;
+}
+
+.line {
+    width: 30px;
+    height: 3px;
+    background-color: white;
+    margin: 5px;
+}
