@@ -1,11 +1,11 @@
 <h2 ng-bind="vm.titulo"></h2>
 <nav>
-    <div class="humberguer" toolbar-directive>
+    <div class="humberguer" toolbar-directive ng-init="vm.open = open">
         <div class="line"></div>
         <div class="line"></div>
         <div class="line"></div>
     </div>
-    <ul class="nav-links">
+    <ul class="nav-links" ng-class="{ open: vm.open }">
        <li><a class="link" href="#">Home</a></li>
        <li><a class="link" href="#">About</a></li>
        <li><a class="link" href="#">Content</a></li>

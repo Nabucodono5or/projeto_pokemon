@@ -30,7 +30,10 @@ describe("Toolbar Module", () => {
     expect(componentController.titulo).toEqual("toolbar component");
   });
 
-  it("toolbar directive: should change the class", () => {
+  it("toolbar component: should change the property open", () => {
+  });
+
+  it("toolbar directive: should change the property open in consequence about click", () => {
     let element = $compile("<div toolbar-directive></div>")($rootScope);
     
     $rootScope.open = false;
