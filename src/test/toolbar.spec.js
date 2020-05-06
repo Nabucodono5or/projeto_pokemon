@@ -34,9 +34,12 @@ describe("Toolbar Module", () => {
   });
 
   it("toolbar directive: should change the property open in consequence about click", () => {
-    let element = $compile("<div toolbar-directive></div>")($rootScope);
+    let element = $compile("<div toolbar-directive info='openFunc()'></div>")($rootScope);
     
     $rootScope.open = false;
+    $rootScope.openFunc = () => {
+      $rootScope.open = !$rootScope.open;
+    };
 
     element.triggerHandler("click");
     $rootScope.$digest();
