@@ -30,14 +30,18 @@ describe("Toolbar Module", () => {
     expect(componentController.titulo).toEqual("toolbar component");
   });
 
-  it("toolbar component: should change the property open", () => {
+  it("toolbar directive: should change the property open to true", () => {
+    let bindings = {};
+    let componentController = $componentController("toolbar", null, bindings);
+    componentController.funOpen();
+    expect(componentController.open).toBe(true);
   });
 
-  it("toolbar directive: should change the property open in consequence about click", () => {
-    let element = $compile("<div toolbar-directive info='openFunc()'></div>")($rootScope);
-    
+  it("toolbar directive: should listening to event click and change 'open' to true", () => {
+    let element = $compile("<div ng-click='funOpen()'></div>")($rootScope);
+
     $rootScope.open = false;
-    $rootScope.openFunc = () => {
+    $rootScope.funOpen = () => {
       $rootScope.open = !$rootScope.open;
     };
 
@@ -45,5 +49,29 @@ describe("Toolbar Module", () => {
     $rootScope.$digest();
 
     expect($rootScope.open).toEqual(true);
+  });
+
+  it("toolbar directive: should listening to event click and mantain 'open' to false", () => {
+    let element = $compile("<div ng-click='funOpen()'></div>")($rootScope);
+
+    $rootScope.open = false;
+    $rootScope.funOpen = () => {
+      $rootScope.open = !$rootScope.open;
+    };
+
+    element.triggerHandler("click");
+    element.triggerHandler("click");
+    $rootScope.$digest();
+
+    expect($rootScope.open).toEqual(false);
+  });
+
+  it("toolbar directive: should change the class to 'open' in consequence of click", () => {
+    let element = $compile("<toolbar></toolbar>")($rootScope);
+    let button = element.find("div");
+    let links = element.find("ul");
+
+    button.triggerHandler("click");
+    expect(links.hasClass("open")).toBe(true);
   });
 });
