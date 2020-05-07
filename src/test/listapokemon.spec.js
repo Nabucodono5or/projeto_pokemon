@@ -39,10 +39,30 @@ describe("ListaPokemon component:", () => {
       expect(elementApp.html()).toContain("lista de pokemon");
     });
 
-    it("shold have pokemon loading", () => {
+    it("shold have pokemon loading in controller", () => {
       let bindings = {};
-      let componentController = $componentController("listaPokemon", null, bindings);
+      let componentController = $componentController(
+        "listaPokemon",
+        null,
+        bindings
+      );
       expect(componentController.pokemon).toEqual([]);
+    });
+  });
+
+  describe("listaPokemonService: ", () => {
+
+    it("should make a get request", () => {
+      let response;
+      let url = "https://pokeapi.co/api/v2/pokemon/30";
+      listaPokemonService.get(url).then((res) => {
+        response = res;
+      });
+
+      $httpBackend.expect("GET", "https://pokeapi.co/api/v2/pokemon/30").respond(200, { name: "Ditto" });
+      $httpBackend.flush();
+
+      expect(response).toEqual({ name: "Ditto" });
     });
   });
 });
