@@ -10,6 +10,7 @@ describe("ListaPokemon component:", () => {
   var $componentController;
   var $q;
 
+
   function services($injector, _$rootScope_) {
     $compile = $injector.get("$compile");
     $httpBackend = $injector.get("$httpBackend");
@@ -33,6 +34,7 @@ describe("ListaPokemon component:", () => {
         .and.returnValue($q.resolve(["algo"]));
     });
 
+
     it("should show message 'lista de pokemon' in page'", () => {
       var elementApp = $compile("<lista-pokemon></lista-pokemon>")($rootScope);
       $rootScope.$digest();
@@ -51,7 +53,6 @@ describe("ListaPokemon component:", () => {
   });
 
   describe("listaPokemonService: ", () => {
-
     it("should make a get request", () => {
       let response;
       let url = "https://pokeapi.co/api/v2/pokemon/30";
@@ -59,7 +60,9 @@ describe("ListaPokemon component:", () => {
         response = res;
       });
 
-      $httpBackend.expect("GET", "https://pokeapi.co/api/v2/pokemon/30").respond(200, { name: "Ditto" });
+      $httpBackend
+        .expect("GET", "https://pokeapi.co/api/v2/pokemon/30")
+        .respond(200, { name: "Ditto" });
       $httpBackend.flush();
 
       expect(response).toEqual({ name: "Ditto" });

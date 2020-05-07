@@ -8,6 +8,9 @@ function appConfig($urlRouterProvider, $stateProvider) {
   let listaPokemon = {
     name: "listaPokemon",
     url: "/lista",
+    params: {
+      geracao: null
+    },
     component: "listaPokemon",
   };
 
