@@ -1,15 +1,18 @@
 import "angular";
 import "angular-mocks";
+import "angular-ui-router";
 import "./../app";
 
 describe("route pages", () => {
-  var $location, $q, $state, $httpBackend;
+  var $location, $q, $state, $httpBackend, $templateCache, $rootScope;
 
-  function services($injector) {
+  function services($injector, _$rootScope_) {
     $location = $injector.get("$location");
     $q = $injector.get("$q");
     $state = $injector.get("$state");
     $httpBackend = $injector.get("$httpBackend");
+    $templateCache = $injector.get("$templateCache");
+    $rootScope = _$rootScope_;
   }
 
   function setUp() {
@@ -24,16 +27,21 @@ describe("route pages", () => {
   describe("when go to '/' ", () => {
     function goTo(url) {
       $location.url(url);
+      $rootScope.$apply();
     }
 
     describe("router otherwise is home", () => {
       it("home page is loading with access to main '/' route ", () => {
-        goTo('/');
+        goTo("/");
 
         expect($state.current.name).toBe("home");
       });
 
-      it("any route not existent should be access to main home route", () => {});
+      it("any route not existent should be access to main home route", () => {
+        goTo("/ola");
+
+        expect($state.current.name).toBe("home");
+      });
     });
   });
 });
