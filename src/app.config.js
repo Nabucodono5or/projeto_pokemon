@@ -5,7 +5,14 @@ function appConfig($urlRouterProvider, $stateProvider) {
     component: "home",
   };
 
+  let listaPokemon = {
+    name: "listaPokemon",
+    url: "/lista",
+    component: "listaPokemon",
+  };
+
   $urlRouterProvider.otherwise("/");
+  $stateProvider.state(listaPokemon);
   $stateProvider.state(otherwise);
 }
 

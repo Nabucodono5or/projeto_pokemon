@@ -44,4 +44,19 @@ describe("route pages", () => {
       });
     });
   });
+
+  describe("when go to '/listaPokemon' ", () => {
+    function goTo(url) {
+      $location.url(url);
+      $rootScope.$apply();
+    }
+
+    describe("router to url /lista", () => {
+      it("lista Pokemon page is loading with access to main '/lista' route ", () => {
+        goTo("/lista");
+
+        expect($state.current.name).toBe("listaPokemon");
+      });
+    });
+  });
 });
