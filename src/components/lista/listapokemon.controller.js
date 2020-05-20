@@ -1,7 +1,7 @@
-function ListaPokemonController(listaPokemonService) {
+function ListaPokemonController(listaPokemonService, $stateParams) {
   let vm = this;
   vm.titulo = "lista de pokemons";
-  vm.address = "";
+  vm.address = $stateParams.geracao;
   vm.pokemon = [];
 
   activate();
@@ -14,6 +14,6 @@ function ListaPokemonController(listaPokemonService) {
   }
 }
 
-ListaPokemonController.$inject = ["listaPokemonService"];
+ListaPokemonController.$inject = ["listaPokemonService", "$stateParams"];
 
 export default ListaPokemonController;

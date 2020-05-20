@@ -20,8 +20,12 @@ describe("ListaPokemon component:", () => {
     $q = $injector.get("$q");
   }
 
+  function stateParams($provide) {
+    $provide.value("$stateParams", { geracao: "" });
+  }
+
   beforeEach(() => {
-    angular.mock.module("listaPokemonModule");
+    angular.mock.module("listaPokemonModule", stateParams);
     inject(services);
   });
 
