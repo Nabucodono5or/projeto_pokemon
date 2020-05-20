@@ -1,11 +1,11 @@
 function listaPokemonService($http) {
     let service = {
-      get: get,
+      getListGeneration: getListGeneration,
     };
   
     return service;
   
-    function get(address) {
+    function getListGeneration(address) {
       return $http
         .get(address)
         .then(apiCallComplete)

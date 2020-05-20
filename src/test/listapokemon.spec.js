@@ -9,7 +9,7 @@ describe("ListaPokemon component:", () => {
   var $httpBackend;
   var $componentController;
   var $q;
-
+  var $stateParams;
 
   function services($injector, _$rootScope_) {
     $compile = $injector.get("$compile");
@@ -29,11 +29,10 @@ describe("ListaPokemon component:", () => {
     beforeEach(() => {
       let url = "";
 
-      spyOn(listaPokemonService, "get")
+      spyOn(listaPokemonService, "getListGeneration")
         .withArgs(url)
         .and.returnValue($q.resolve(["algo"]));
     });
-
 
     it("should show message 'lista de pokemon' in page'", () => {
       var elementApp = $compile("<lista-pokemon></lista-pokemon>")($rootScope);
@@ -56,7 +55,7 @@ describe("ListaPokemon component:", () => {
     it("should make a get request", () => {
       let response;
       let url = "https://pokeapi.co/api/v2/pokemon/30";
-      listaPokemonService.get(url).then((res) => {
+      listaPokemonService.getListGeneration(url).then((res) => {
         response = res;
       });
 

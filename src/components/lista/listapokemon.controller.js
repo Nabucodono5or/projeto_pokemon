@@ -7,7 +7,7 @@ function ListaPokemonController(listaPokemonService) {
   activate();
 
   function activate() {
-    return listaPokemonService.get(vm.address).then((response) => {
+    return listaPokemonService.getListGeneration(vm.address).then((response) => {
       vm.pokemon = response;
       return vm.pokemon;
     });
