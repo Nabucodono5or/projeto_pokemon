@@ -28,7 +28,8 @@ module.exports = function(config) {
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
       "./src/test/*.js": ["parcel"],
-      "./src/app.js": ["parcel"],
+      // "./src/app.js": ["parcel"],
+      "./src/**/**/*.js": ["parcel"],
       "./node_modules/angular-mocks/angular-mocks.js": ["parcel"],
       "./node_modules/angular/angular.min.js": ["parcel"],
     },
