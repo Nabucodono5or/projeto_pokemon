@@ -39,9 +39,7 @@ describe("ListaPokemon component:", () => {
 
     describe("When lista is loaded...", () => {
       it("should show message 'lista de pokemon' in page'", () => {
-        var elementApp = $compile("<lista-pokemon></lista-pokemon>")(
-          $rootScope
-        );
+        var elementApp = $compile("<lista-pokemon></lista-pokemon>")($rootScope);
         $rootScope.$digest();
         expect(elementApp.html()).toContain("lista de pokemon");
       });
@@ -55,7 +53,8 @@ describe("ListaPokemon component:", () => {
         );
         expect(componentController.pokemon).toEqual([]);
       });
-    });
+    })
+
   });
 
   describe("listaPokemonService: ", () => {

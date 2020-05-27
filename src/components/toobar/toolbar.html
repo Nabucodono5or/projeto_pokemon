@@ -5,14 +5,12 @@
     <div class="line"></div>
   </div>
   <ul class="nav-links" ng-class="{ open: vm.open }">
-    <li>
+    <li ng-repeat="lista in vm.listUrl" ng-click="vm.funOpen()">
       <a
         class="link"
-        ng-repeat="lista in vm.listUrl"
-        ng-click="vm.funOpen()"
+        ng-bind="lista.name"
         ui-sref="listaPokemon({ geracao: lista.url })"
-        >{{ lista.name }}</a
-      >
+      ></a>
     </li>
   </ul>
 </nav>
