@@ -10,7 +10,6 @@ function ToolbarController() {
 
   function funOpen() {
     vm.open = !vm.open;
-    console.log("open");
   }
 }
 

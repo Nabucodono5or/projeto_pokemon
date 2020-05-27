@@ -17,12 +17,6 @@ describe(" Home module ", () => {
     $componentController = _$componentController_;
   }));
 
-  it("Home component: should show component in page", () => {
-    let element = $compile("<home></home>")($rootScope);
-    $rootScope.$digest();
-    expect(element.html()).toContain("segundo componente");
-  });
-
   it("home controller: should be defined and have propierty titulo defined", () => {
     let bindings = {};
     let componentController = $componentController("home", null, bindings);

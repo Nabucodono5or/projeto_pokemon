@@ -29,19 +29,6 @@ describe("App module", () => {
     $q = _$q_;
   }));
 
-  it("teste inicial: should show message 'Olá mundo' in page'", () => {
-    let deferred = $q.defer();
-    let lista = ["algo"];
-    deferred.resolve(lista);
-    let promise = deferred.promise;
-
-    spyOn(appService, "get").and.returnValue(promise);
-
-    var elementApp = $compile("<app></app>")($rootScope);
-    $rootScope.$digest();
-    expect(elementApp.html()).toContain("Olá mundo");
-  });
-
   it("app Service: should make a get request", () => {
     let response;
     appService.get().then((res) => {

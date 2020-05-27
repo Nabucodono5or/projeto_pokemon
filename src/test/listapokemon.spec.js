@@ -9,7 +9,6 @@ describe("ListaPokemon component:", () => {
   var $httpBackend;
   var $componentController;
   var $q;
-  var $stateParams;
 
   function services($injector, _$rootScope_) {
     $compile = $injector.get("$compile");
