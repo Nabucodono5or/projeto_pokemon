@@ -5,12 +5,12 @@
         <div class="line"></div>
     </div>
     <ul class="nav-links" ng-class="{ open: vm.open }">
-       <li><a class="link" href="#">Kanto</a></li>
-       <li><a class="link" href="#">Johto</a></li>
-       <li><a class="link" href="#">Hoenn</a></li>
-       <li><a class="link" href="#">Sinnoh</a></li>
-       <li><a class="link" href="#">Unova</a></li>
-       <li><a class="link" href="#">Kalos</a></li>
-       <li><a class="link" href="#">Alola</a></li>
+       <li><a class="link" ng-click="vm.funOpen()" ui-sref="listaPokemon">Kanto</a></li>
+       <li><a class="link" ng-click="vm.funOpen()" href="#">Johto</a></li>
+       <li><a class="link" ng-click="vm.funOpen()" href="#">Hoenn</a></li>
+       <li><a class="link" ng-click="vm.funOpen()" href="#">Sinnoh</a></li>
+       <li><a class="link" ng-click="vm.funOpen()" href="#">Unova</a></li>
+       <li><a class="link" ng-click="vm.funOpen()" href="#">Kalos</a></li>
+       <li><a class="link" ng-click="vm.funOpen()" href="#">Alola</a></li>
     </ul>
 </nav>
