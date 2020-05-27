@@ -37,20 +37,24 @@ describe("ListaPokemon component:", () => {
         .and.returnValue($q.resolve(["algo"]));
     });
 
-    it("should show message 'lista de pokemon' in page'", () => {
-      var elementApp = $compile("<lista-pokemon></lista-pokemon>")($rootScope);
-      $rootScope.$digest();
-      expect(elementApp.html()).toContain("lista de pokemon");
-    });
+    describe("When lista is loaded...", () => {
+      it("should show message 'lista de pokemon' in page'", () => {
+        var elementApp = $compile("<lista-pokemon></lista-pokemon>")(
+          $rootScope
+        );
+        $rootScope.$digest();
+        expect(elementApp.html()).toContain("lista de pokemon");
+      });
 
-    it("shold have pokemon loading in controller", () => {
-      let bindings = {};
-      let componentController = $componentController(
-        "listaPokemon",
-        null,
-        bindings
-      );
-      expect(componentController.pokemon).toEqual([]);
+      it("shold have pokemon loading in controller", () => {
+        let bindings = {};
+        let componentController = $componentController(
+          "listaPokemon",
+          null,
+          bindings
+        );
+        expect(componentController.pokemon).toEqual([]);
+      });
     });
   });
 

@@ -30,19 +30,16 @@ describe("route pages", () => {
       $location.url(url);
       $rootScope.$apply();
     }
+    it("home page is loading with access to main '/' route ", () => {
+      goTo("/");
 
-    describe("router otherwise is home", () => {
-      it("home page is loading with access to main '/' route ", () => {
-        goTo("/");
+      expect($state.current.name).toBe("home");
+    });
 
-        expect($state.current.name).toBe("home");
-      });
+    it("any route not existent should be access to main home route", () => {
+      goTo("/ola");
 
-      it("any route not existent should be access to main home route", () => {
-        goTo("/ola");
-
-        expect($state.current.name).toBe("home");
-      });
+      expect($state.current.name).toBe("home");
     });
   });
 
@@ -57,22 +54,20 @@ describe("route pages", () => {
       $rootScope.$apply();
     }
 
-    describe("router to url /lista", () => {
-      it("lista Pokemon page is loading with access to main '/lista' route ", () => {
-        goTo("listaPokemon");
+    it("lista Pokemon page is loading with access to main '/lista' route ", () => {
+      goTo("listaPokemon");
 
-        expect($state.current.name).toBe("listaPokemon");
-      });
+      expect($state.current.name).toBe("listaPokemon");
+    });
 
-      it("should sending url in consequence of the click in the link /lista", () => {
-        let address = "https://pokeapi.co/api/v2/pokemon/30";
+    it("should sending url in consequence of the click in the link /lista", () => {
+      let address = "https://pokeapi.co/api/v2/pokemon/30";
 
-        goTo("listaPokemon", { geracao: address });
-        $rootScope.$apply();
+      goTo("listaPokemon", { geracao: address });
+      $rootScope.$apply();
 
-        expect($state.current.name).toBe("listaPokemon");
-        expect($state.params.geracao).toEqual(address);
-      });
+      expect($state.current.name).toBe("listaPokemon");
+      expect($state.params.geracao).toEqual(address);
     });
   });
 });

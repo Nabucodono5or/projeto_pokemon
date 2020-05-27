@@ -17,10 +17,13 @@ describe(" Home module ", () => {
     $componentController = _$componentController_;
   }));
 
-  it("home controller: should be defined and have propierty titulo defined", () => {
-    let bindings = {};
-    let componentController = $componentController("home", null, bindings);
-    expect(componentController).toBeDefined();
-    expect(componentController.titulo).toEqual("segundo componente");
-  });
+  describe("When home page is loaded...", () => {
+    it("Should be defined and have propierty titulo defined", () => {
+      let bindings = {};
+      let componentController = $componentController("home", null, bindings);
+      expect(componentController).toBeDefined();
+      expect(componentController.titulo).toEqual("segundo componente");
+    });
+  })
+
 });
