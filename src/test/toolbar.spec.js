@@ -8,7 +8,7 @@ describe("Toolbar Module", () => {
   var $componentController;
   var $scope;
 
-  function services(_$compile_, _$rootScope_, _$componentController_){
+  function services(_$compile_, _$rootScope_, _$componentController_) {
     $compile = _$compile_;
     $rootScope = _$rootScope_;
     $componentController = _$componentController_;
@@ -32,10 +32,16 @@ describe("Toolbar Module", () => {
       let componentController = $componentController("toolbar", null, bindings);
       expect(componentController.listUrl).not.toEqual([]);
       expect(componentController.listUrl.length).toBeGreaterThan(0);
-    });  
+    });
   });
 
   describe("When click in the menu humburguer...", () => {
+    let element;
+    beforeEach(() => {
+      element = angular.element('<toolbar></toolbar>');
+      $compile(element)($scope);
+    });
+
     it("Should change the property open to true", () => {
       let bindings = {};
       let componentController = $componentController("toolbar", null, bindings);
@@ -44,45 +50,41 @@ describe("Toolbar Module", () => {
     });
 
     it("Should listening to event click and mantain 'open' to false", () => {
-      let element = $compile("<div ng-click='funOpen()'></div>")($scope);
+      let div = $compile("<div ng-click='funOpen()'></div>")($scope);
 
       $rootScope.open = false;
       $rootScope.funOpen = () => {
         $scope.open = !$scope.open;
       };
 
-      element.triggerHandler("click");
-      element.triggerHandler("click");
+      div.triggerHandler("click");
+      div.triggerHandler("click");
       $rootScope.$digest();
 
       expect($scope.open).toEqual(false);
     });
 
     it("Should change the class to 'open' in consequence of click", () => {
-      let element = $compile("<toolbar></toolbar>")($scope);
       let button = element.find("div");
       let links = element.find("ul");
 
       button.triggerHandler("click");
       expect(links.hasClass("open")).toBe(true);
     });
+
+    it("Should show list of the continents pokemon", () => {      
+      let button = element.find("div");
+      let list;
+
+      button.triggerHandler("click");
+      list = element.find("li");
+
+      expect(list.eq(0).text()).toContain("Kanto");
+    })
   });
 
   describe("When click in the options menu...", () => {
     it("Should close the menu when click an option of the menu", () => {
-      let element = $compile("<toolbar></toolbar>")($scope);
-      let button = element.find("div");
-      let links = element.find("ul");
-      let link = element.find("li");
-
-      $rootScope.$digest();
-      console.log(links);
-
-      button.triggerHandler("click");
-      link.triggerHandler("click");
-      $rootScope.$digest();
-
-      expect(links.hasClass("open")).toBe(false);
     });
   });
 });
