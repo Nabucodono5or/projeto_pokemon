@@ -37,8 +37,9 @@ describe("Toolbar Module", () => {
 
   describe("When click in the menu humburguer...", () => {
     let element;
+
     beforeEach(() => {
-      element = angular.element('<toolbar></toolbar>');
+      element = angular.element("<toolbar></toolbar>");
       $compile(element)($scope);
     });
 
@@ -52,8 +53,8 @@ describe("Toolbar Module", () => {
     it("Should listening to event click and mantain 'open' to false", () => {
       let div = $compile("<div ng-click='funOpen()'></div>")($scope);
 
-      $rootScope.open = false;
-      $rootScope.funOpen = () => {
+      $scope.open = false;
+      $scope.funOpen = () => {
         $scope.open = !$scope.open;
       };
 
@@ -72,7 +73,7 @@ describe("Toolbar Module", () => {
       expect(links.hasClass("open")).toBe(true);
     });
 
-    it("Should show list of the continents pokemon", () => {      
+    it("Should show list of the continents pokemon", () => {
       let button = element.find("div");
       let list;
 
@@ -80,11 +81,32 @@ describe("Toolbar Module", () => {
       list = element.find("li");
 
       expect(list.eq(0).text()).toContain("Kanto");
-    })
+    });
   });
 
   describe("When click in the options menu...", () => {
+    let element;
+    beforeEach(() => {
+      $scope.open = false;
+      $scope.funOpen = () => {
+        $scope.open = !$scope.open;
+      };
+
+      element = angular.element("<toolbar></toolbar>");
+      $compile(element)($scope);
+
+    });
+
     it("Should close the menu when click an option of the menu", () => {
+      let button = element.find("div");
+      let links = element.find("ul");
+      let option;  
+      
+      button.triggerHandler("click");
+      option = element.find('li');
+      option.triggerHandler("click");
+
+      expect(links.hasClass("open")).toBe(false);
     });
   });
 });
