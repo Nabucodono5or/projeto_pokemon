@@ -2,17 +2,19 @@ import "angular";
 import "angular-mocks";
 import "./../components/lista/listapokemon";
 
-describe("ListaPokemon component:", () => {
+describe("ListaPokemon Module:", () => {
   var $compile;
   var $rootScope;
   var $componentController;
   var listaPokemonService;
+  var $scope;
 
   function services($injector, _$rootScope_) {
     listaPokemonService = $injector.get("listaPokemonService");
     $compile = $injector.get("$compile");
     $componentController = $injector.get("$componentController");
     $rootScope = _$rootScope_;
+    $scope = $rootScope.$new();
   }
 
   function stateParams($provide) {
@@ -25,6 +27,8 @@ describe("ListaPokemon component:", () => {
   });
 
   describe("listaPokemon component:", () => {
+    let fakeList = [{ name: "Bulbasaur" }, { name: "Ditto" }];
+
     beforeEach(() => {
       var $q;
       let url = "";
@@ -35,27 +39,37 @@ describe("ListaPokemon component:", () => {
 
       spyOn(listaPokemonService, "getListGeneration")
         .withArgs(url)
-        .and.returnValue($q.resolve(["algo"]));
+        .and.returnValue(
+          $q.resolve(fakeList)
+        );
     });
 
     describe("When lista is loaded...", () => {
-      it("should show message 'lista de pokemon' in page'", () => {
-        var elementApp = $compile("<lista-pokemon></lista-pokemon>")(
-          $rootScope
-        );
-        $rootScope.$digest();
-        expect(elementApp.html()).toContain("lista de pokemon");
-      });
+      let elementApp = angular.element("<lista-pokemon></lista-pokemon>");
+      let componentController;
 
-      it("shold have pokemon loading in controller", () => {
+      beforeEach(() => {
         let bindings = {};
-        let componentController = $componentController(
+
+        $compile(elementApp)($scope);
+        $rootScope.$digest();
+
+        componentController = $componentController(
           "listaPokemon",
           null,
           bindings
         );
+      });
+
+      it("should show message 'lista de pokemon' in page'", () => {
+        expect(elementApp.html()).toContain("lista de pokemon");
+      });
+
+      it("should have pokemon loading in controller", () => {
         expect(componentController.pokemon).toEqual([]);
       });
+
+      it("should list every pokemon");
     });
   });
 
