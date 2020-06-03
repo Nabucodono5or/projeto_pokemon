@@ -1,1 +1,9 @@
 <h2 ng-bind="vm.titulo"></h2>
+
+<ul>
+    <li ng-repeat="p in vm.pokemon">
+        <div>
+            {{ p.name }}            
+        </div>
+    </li>
+</ul>

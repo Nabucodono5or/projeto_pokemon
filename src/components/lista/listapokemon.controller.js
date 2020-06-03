@@ -8,7 +8,8 @@ function ListaPokemonController(listaPokemonService, $stateParams) {
 
   function activate() {
     return listaPokemonService.getListGeneration(vm.address).then((response) => {
-      vm.pokemon = response;
+      vm.pokemon = response.results;
+      console.log(vm.pokemon);
       return vm.pokemon;
     });
   }
