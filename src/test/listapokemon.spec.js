@@ -5,18 +5,14 @@ import "./../components/lista/listapokemon";
 describe("ListaPokemon component:", () => {
   var $compile;
   var $rootScope;
-  var listaPokemonService;
-  var $httpBackend;
   var $componentController;
-  var $q;
+  var listaPokemonService;
 
   function services($injector, _$rootScope_) {
-    $compile = $injector.get("$compile");
-    $httpBackend = $injector.get("$httpBackend");
-    $componentController = $injector.get("$componentController");
     listaPokemonService = $injector.get("listaPokemonService");
+    $compile = $injector.get("$compile");
+    $componentController = $injector.get("$componentController");
     $rootScope = _$rootScope_;
-    $q = $injector.get("$q");
   }
 
   function stateParams($provide) {
@@ -30,7 +26,12 @@ describe("ListaPokemon component:", () => {
 
   describe("listaPokemon component:", () => {
     beforeEach(() => {
+      var $q;
       let url = "";
+
+      inject(($injector) => {
+        $q = $injector.get("$q");
+      });
 
       spyOn(listaPokemonService, "getListGeneration")
         .withArgs(url)
@@ -39,7 +40,9 @@ describe("ListaPokemon component:", () => {
 
     describe("When lista is loaded...", () => {
       it("should show message 'lista de pokemon' in page'", () => {
-        var elementApp = $compile("<lista-pokemon></lista-pokemon>")($rootScope);
+        var elementApp = $compile("<lista-pokemon></lista-pokemon>")(
+          $rootScope
+        );
         $rootScope.$digest();
         expect(elementApp.html()).toContain("lista de pokemon");
       });
@@ -53,11 +56,16 @@ describe("ListaPokemon component:", () => {
         );
         expect(componentController.pokemon).toEqual([]);
       });
-    })
-
+    });
   });
 
   describe("listaPokemonService: ", () => {
+    var $httpBackend;
+
+    beforeEach(inject(($injector) => {
+      $httpBackend = $injector.get("$httpBackend");
+    }));
+
     it("should make a get request", () => {
       let response;
       let url = "https://pokeapi.co/api/v2/pokemon/30";

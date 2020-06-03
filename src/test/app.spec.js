@@ -3,33 +3,28 @@ import "angular-mocks";
 import "./../app";
 
 describe("App module", () => {
-  var $compile;
   var $rootScope;
-  var appService;
-  var $httpBackend;
   var $componentController;
-  var $q;
+
+  function services(_$rootScope_, _$componentController_) {
+    $rootScope = _$rootScope_;
+    $componentController = _$componentController_;
+  }
 
   beforeEach(() => {
     angular.mock.module("app");
+    inject(services);
   });
 
-  beforeEach(inject((
-    _$compile_,
-    _$rootScope_,
-    $injector,
-    _$componentController_,
-    _$q_
-  ) => {
-    $compile = _$compile_;
-    $rootScope = _$rootScope_;
-    appService = $injector.get("appService");
-    $httpBackend = $injector.get("$httpBackend");
-    $componentController = _$componentController_;
-    $q = _$q_;
-  }));
-
   describe("When app service is access...", () => {
+    var appService;
+    var $httpBackend;
+
+    beforeEach(inject(($injector) => {
+      appService = $injector.get("appService");
+      $httpBackend = $injector.get("$httpBackend");
+    }));
+
     it("app Service should make a get request", () => {
       let response;
       appService.get().then((res) => {

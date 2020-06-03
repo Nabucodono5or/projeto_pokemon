@@ -4,20 +4,12 @@ import "angular-ui-router";
 import "./../app";
 
 describe("route pages", () => {
-  var $location, $q, $state, $httpBackend, $templateCache, $rootScope, $compile;
+  var $state, $templateCache, $rootScope;
 
-  function services($injector, _$rootScope_, _$compile_) {
-    $location = $injector.get("$location");
-    $q = $injector.get("$q");
+  function services($injector, _$rootScope_) {
     $state = $injector.get("$state");
-    $httpBackend = $injector.get("$httpBackend");
     $templateCache = $injector.get("$templateCache");
     $rootScope = _$rootScope_;
-    $compile = _$compile_;
-  }
-
-  function setUp() {
-    $httpBackend.expect("GET", "").respond(200, {});
   }
 
   beforeEach(() => {
@@ -27,9 +19,9 @@ describe("route pages", () => {
 
   describe("when go to '/' ", () => {
     function goTo(url) {
-      $location.url(url);
       $rootScope.$apply();
     }
+
     it("home page is loading with access to main '/' route ", () => {
       goTo("/");
 
@@ -64,7 +56,6 @@ describe("route pages", () => {
       let address = "https://pokeapi.co/api/v2/pokemon/30";
 
       goTo("listaPokemon", { geracao: address });
-      $rootScope.$apply();
 
       expect($state.current.name).toBe("listaPokemon");
       expect($state.params.geracao).toEqual(address);

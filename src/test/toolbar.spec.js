@@ -6,16 +6,19 @@ describe("Toolbar Module", () => {
   var $compile;
   var $rootScope;
   var $componentController;
+  var $scope;
 
-  beforeEach(() => {
-    angular.mock.module("toolbarModule");
-  });
-
-  beforeEach(inject((_$compile_, _$rootScope_, _$componentController_) => {
+  function services(_$compile_, _$rootScope_, _$componentController_){
     $compile = _$compile_;
     $rootScope = _$rootScope_;
     $componentController = _$componentController_;
-  }));
+    $scope = $rootScope.$new();
+  }
+
+  beforeEach(() => {
+    angular.mock.module("toolbarModule");
+    inject(services);
+  });
 
   describe("When load toolbar...", () => {
     it("toolbar component should contain the property titulo", () => {
@@ -41,22 +44,22 @@ describe("Toolbar Module", () => {
     });
 
     it("Should listening to event click and mantain 'open' to false", () => {
-      let element = $compile("<div ng-click='funOpen()'></div>")($rootScope);
+      let element = $compile("<div ng-click='funOpen()'></div>")($scope);
 
       $rootScope.open = false;
       $rootScope.funOpen = () => {
-        $rootScope.open = !$rootScope.open;
+        $scope.open = !$scope.open;
       };
 
       element.triggerHandler("click");
       element.triggerHandler("click");
       $rootScope.$digest();
 
-      expect($rootScope.open).toEqual(false);
+      expect($scope.open).toEqual(false);
     });
 
     it("Should change the class to 'open' in consequence of click", () => {
-      let element = $compile("<toolbar></toolbar>")($rootScope);
+      let element = $compile("<toolbar></toolbar>")($scope);
       let button = element.find("div");
       let links = element.find("ul");
 
@@ -67,7 +70,7 @@ describe("Toolbar Module", () => {
 
   describe("When click in the options menu...", () => {
     it("Should close the menu when click an option of the menu", () => {
-      let element = $compile("<toolbar></toolbar>")($rootScope);
+      let element = $compile("<toolbar></toolbar>")($scope);
       let button = element.find("div");
       let links = element.find("ul");
       let link = element.find("li");

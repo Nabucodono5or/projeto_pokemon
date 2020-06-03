@@ -7,14 +7,18 @@ describe(" Home module ", () => {
   var $rootScope;
   var $componentController;
 
-  beforeEach(() => {
-    angular.mock.module("homeModule");
-  });
-
-  beforeEach(inject((_$compile_, _$rootScope_, _$componentController_) => {
+  function services(_$compile_, _$rootScope_, _$componentController_){
     $compile = _$compile_;
     $rootScope = _$rootScope_;
     $componentController = _$componentController_;
+  }
+
+  beforeEach(() => {
+    angular.mock.module("homeModule");
+    inject(services);
+  });
+
+  beforeEach(inject(() => {
   }));
 
   describe("When home page is loaded...", () => {
