@@ -38,7 +38,7 @@ describe("perfilPokemon Module:", () => {
         componentController = $componentController("perfil", null, bindings);
       });
 
-      it("should show message 'Componente perfil' in page'", () => {
+      it("should component perfil be defined", () => {
         expect(componentController).toBeDefined();
       });
 
