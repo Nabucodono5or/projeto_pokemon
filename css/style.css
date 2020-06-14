@@ -79,6 +79,7 @@ nav {
 }
 
 .card-pokemon {
+  width: 200px;
   border-radius: 0.3em;
   margin: 1em;
   padding: 1em;

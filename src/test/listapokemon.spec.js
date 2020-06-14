@@ -39,9 +39,7 @@ describe("ListaPokemon Module:", () => {
 
       spyOn(listaPokemonService, "getListGeneration")
         .withArgs(url)
-        .and.returnValue(
-          $q.resolve(fakeList)
-        );
+        .and.returnValue($q.resolve(fakeList));
     });
 
     describe("When lista is loaded...", () => {
@@ -67,6 +65,12 @@ describe("ListaPokemon Module:", () => {
 
       it("should have pokemon loading in controller", () => {
         expect(componentController.pokemon).toEqual([]);
+      });
+
+      it("should upper case the name of the pokemon", () => {
+        let namePokemon = "ditto";
+
+        expect(componentController.upperCaseString(namePokemon)).toEqual("DITTO");
       });
 
       it("should list every pokemon");

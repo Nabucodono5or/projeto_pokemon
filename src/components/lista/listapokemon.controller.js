@@ -3,6 +3,7 @@ function ListaPokemonController(listaPokemonService, $stateParams) {
   vm.titulo = "lista de pokemons";
   vm.address = $stateParams.geracao;
   vm.pokemon = [];
+  vm.upperCaseString = upperCaseString;
 
   activate();
 
@@ -13,6 +14,10 @@ function ListaPokemonController(listaPokemonService, $stateParams) {
         vm.pokemon = response.results;
         return vm.pokemon;
       });
+  }
+
+  function upperCaseString(string) {
+    return string.toUpperCase();
   }
 }
 
