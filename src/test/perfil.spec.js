@@ -7,8 +7,10 @@ describe("perfilPokemon Module:", () => {
   var $rootScope;
   var $componentController;
   var $scope;
+  var perfilService;
 
   function services($injector, _$rootScope_) {
+    perfilService = $injector.get("perfilService");
     $compile = $injector.get("$compile");
     $componentController = $injector.get("$componentController");
     $rootScope = _$rootScope_;
@@ -33,11 +35,7 @@ describe("perfilPokemon Module:", () => {
         $compile(elementApp)($scope);
         $rootScope.$digest();
 
-        componentController = $componentController(
-          "perfil",
-          null,
-          bindings
-        );
+        componentController = $componentController("perfil", null, bindings);
       });
 
       it("should show message 'Componente perfil' in page'", () => {
@@ -59,13 +57,14 @@ describe("perfilPokemon Module:", () => {
 
 //     it("should make a get request", () => {
 //       let response;
-//       let url = "https://pokeapi.co/api/v2/pokemon/30";
-//       listaPokemonService.getListGeneration(url).then((res) => {
+//       let pokemon = "ditto";
+
+//       perfilService.getPokemon(pokemon).then((res) => {
 //         response = res;
 //       });
 
 //       $httpBackend
-//         .expect("GET", "https://pokeapi.co/api/v2/pokemon/30")
+//         .expect("GET", "https://pokeapi.co/api/v2/pokemon/" + pokemon)
 //         .respond(200, { name: "Ditto" });
 //       $httpBackend.flush();
 
