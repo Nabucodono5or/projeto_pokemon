@@ -17,13 +17,31 @@ describe("perfilPokemon Module:", () => {
     $scope = $rootScope.$new();
   }
 
+  function stateParams($provide) {
+    $provide.value("$stateParams", { pokemon: "Ditto" });
+  }
+
   beforeEach(() => {
-    angular.mock.module("perfilModule");
+    angular.mock.module("perfilModule", stateParams);
     inject(services);
   });
 
   describe("perfilPokemon component:", () => {
     let fakePerfil = { name: "Ditto" };
+
+    beforeEach(() => {
+      var $q;
+      let name = "Ditto";
+
+      inject(($injector) => {
+        $q = $injector.get("$q");
+      });
+
+      spyOn(perfilService, "getPokemon")
+        .withArgs(name)
+        .and.returnValue($q.resolve(fakePerfil));
+    });
+
 
     describe("When perfil is loaded...", () => {
       let elementApp = angular.element("<perfil></perfil>");

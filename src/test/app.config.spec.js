@@ -78,5 +78,4 @@ describe("route pages", () => {
       expect($state.params.pokemon).toEqual(pokemonName);
     });
   });
-
 });
