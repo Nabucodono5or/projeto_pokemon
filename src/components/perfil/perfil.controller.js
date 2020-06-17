@@ -8,7 +8,7 @@ function PerfilController(perfilService, $stateParams) {
 
   function activate() {
     return perfilService.getPokemon(vm.pokemonName).then((response) => {
-      vm.pokemon = response.results;
+      vm.pokemon = response;
       console.log(vm.pokemon);
       return vm.pokemon;
     });
