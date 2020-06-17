@@ -9,13 +9,23 @@ function appConfig($urlRouterProvider, $stateProvider) {
     name: "listaPokemon",
     url: "/lista",
     params: {
-      geracao: null
+      geracao: null,
     },
     component: "listaPokemon",
   };
 
+  let perfilPokemon = {
+    name: "perfil",
+    url: "/pokemon",
+    params: {
+      pokemon: null,
+    },
+    component: "perfil",
+  };
+
   $urlRouterProvider.otherwise("/");
   $stateProvider.state(listaPokemon);
+  $stateProvider.state(perfilPokemon);
   $stateProvider.state(otherwise);
 }
 

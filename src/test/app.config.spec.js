@@ -17,10 +17,20 @@ describe("route pages", () => {
     inject(services);
   });
 
-  describe("when go to '/' ", () => {
-    function goTo(url) {
-      $rootScope.$apply();
+  function goTo(url, params) {
+    if (params) {
+      $state.go(url, params);
+    } else {
+      $state.go(url);
     }
+
+    $rootScope.$apply();
+  }
+
+  describe("when go to '/' ", () => {
+    // function goTo(url) {
+    //   $rootScope.$apply();
+    // }
 
     it("home page is loading with access to main '/' route ", () => {
       goTo("/");
@@ -36,16 +46,6 @@ describe("route pages", () => {
   });
 
   describe("when go to '/lista' ", () => {
-    function goTo(url, params) {
-      if (params) {
-        $state.go(url, params);
-      } else {
-        $state.go(url);
-      }
-
-      $rootScope.$apply();
-    }
-
     it("lista Pokemon page is loading with access to main '/lista' route ", () => {
       goTo("listaPokemon");
 
