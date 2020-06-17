@@ -16,30 +16,30 @@ describe("App module", () => {
     inject(services);
   });
 
-  describe("When app service is access...", () => {
-    var appService;
-    var $httpBackend;
+  // describe("When app service is access...", () => {
+  //   var appService;
+  //   var $httpBackend;
 
-    beforeEach(inject(($injector) => {
-      appService = $injector.get("appService");
-      $httpBackend = $injector.get("$httpBackend");
-    }));
+  //   beforeEach(inject(($injector) => {
+  //     appService = $injector.get("appService");
+  //     $httpBackend = $injector.get("$httpBackend");
+  //   }));
 
-    it("app Service should make a get request", () => {
-      let response;
-      appService.get().then((res) => {
-        response = res;
-      });
+  //   it("app Service should make a get request", () => {
+  //     let response;
+  //     appService.get().then((res) => {
+  //       response = res;
+  //     });
 
-      $httpBackend
-        .expect("GET", "https://pokeapi.co/api/v2/pokemon/30")
-        .respond(200, { pokemon: "Ditto" });
+  //     $httpBackend
+  //       .expect("GET", "https://pokeapi.co/api/v2/pokemon/30")
+  //       .respond(200, { pokemon: "Ditto" });
 
-      $httpBackend.flush();
+  //     $httpBackend.flush();
 
-      expect(response).toEqual({ pokemon: "Ditto" });
-    });
-  });
+  //     expect(response).toEqual({ pokemon: "Ditto" });
+  //   });
+  // });
 
   describe("When app controller is load...", () => {
     it("appController: should be defined ", () => {
