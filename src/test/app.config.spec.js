@@ -61,4 +61,22 @@ describe("route pages", () => {
       expect($state.params.geracao).toEqual(address);
     });
   });
+
+  describe("when go to '/pokemon' ", () => {
+    it("perfil pokemon page is loading with access to main '/pokemon' route ", () => {
+      goTo("perfil");
+
+      expect($state.current.name).toBe("perfil");
+    });
+
+    it("should sending pekemon name  after click to url /pokemon", () => {
+      let pokemonName = "Ditto";
+
+      goTo("perfil", { pokemon: pokemonName });
+
+      expect($state.current.name).toBe("perfil");
+      expect($state.params.pokemon).toEqual(pokemonName);
+    });
+  });
+
 });
