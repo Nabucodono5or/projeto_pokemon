@@ -48,27 +48,27 @@ describe("perfilPokemon Module:", () => {
     });
   });
 
-//   describe("perfilService: ", () => {
-//     var $httpBackend;
+  describe("perfilService: ", () => {
+    var $httpBackend;
 
-//     beforeEach(inject(($injector) => {
-//       $httpBackend = $injector.get("$httpBackend");
-//     }));
+    beforeEach(inject(($injector) => {
+      $httpBackend = $injector.get("$httpBackend");
+    }));
 
-//     it("should make a get request", () => {
-//       let response;
-//       let pokemon = "ditto";
+    it("should make a get request", () => {
+      let response;
+      let pokemon = "ditto";
 
-//       perfilService.getPokemon(pokemon).then((res) => {
-//         response = res;
-//       });
+      perfilService.getPokemon(pokemon).then((res) => {
+        response = res;
+      });
 
-//       $httpBackend
-//         .expect("GET", "https://pokeapi.co/api/v2/pokemon/" + pokemon)
-//         .respond(200, { name: "Ditto" });
-//       $httpBackend.flush();
+      $httpBackend
+        .expect("GET", "https://pokeapi.co/api/v2/pokemon/" + pokemon)
+        .respond(200, { name: "Ditto" });
+      $httpBackend.flush();
 
-//       expect(response).toEqual({ name: "Ditto" });
-//     });
-//   });
+      expect(response).toEqual({ name: "Ditto" });
+    });
+  });
 });
